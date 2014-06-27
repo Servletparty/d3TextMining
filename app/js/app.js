@@ -5,13 +5,12 @@ app.controller("MainCtrl", [ "$scope", "JsonFactory", function($scope, JsonFacto
     $scope.data = {};
     var handleSuccess = function(data, status) {
         $scope.grapheDatas = data;
-        $scope.data.status = status;
-        console.log($scope.data.status);
+        console.log(status);
     };
 
     var handleError = function(data, status) {
         $scope.data.status = status;
-        console.log($scope.data.status);
+        console.log(status);
     };
 
     JsonFactory.getData("data/data.json").success(handleSuccess).error(handleError);
