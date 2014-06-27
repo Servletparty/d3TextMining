@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- frameworks -->
+    <script type="text/javascript" src="js/lib/underscore.js"></script>
+    <script type="text/javascript" src="js/lib/d3.js"></script>
+    <script type="text/javascript" src="js/lib/angular.min.js"></script>
+    <!-- app -->
+    <script type="text/javascript" src="js/app.js"></script>
+    <!-- data access factory -->
+    <script type="text/javascript" src="js/dataFactory/JsonFactory.js"></script>
+    <!-- library factory  -->
+    <script type="text/javascript" src="js/libService/d3Factory.js"></script>
+    <script type="text/javascript" src="js/libService/underscoreFactory.js"></script>
+    <!-- UI Component directive -->
+    <script type="text/javascript" src="js/UIComponent/grapheForceDirective.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+    <graph-forces width="1265" height="470"></graph-forces>
+</body>
+</html>
