@@ -1,5 +1,4 @@
 var app = angular.module("myApp", ["d3", "underscore", "json", "graphForces"]);
-//var app = angular.module("myApp", []);
 
 app.controller("MainCtrl", [ "$scope", "JsonFactory", function($scope, JsonFactory){
     $scope.loaded = false;
