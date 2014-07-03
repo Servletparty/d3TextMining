@@ -32,26 +32,31 @@ angular.module("svgSpinner", []).directive("svgSpinner", function() {
             var data = [2, 8, 14, 20, 26];
 
             var paths = svg.selectAll("path").data(data).enter().append("path")
+                .attr("id", function(d){
+                    return "data-" + d;
+                })
                 .attr("transform", function(d){
                     return "translate(" + d + ")";
                 })
-                .attr("d", "M0 12 V20 H4 V12z");
+                .attr("d", "M0 4 V20 H4 V4z");
 
+            var index = 0;
             function redraw() {
-                svg.selectAll("path")
-                    .data([data])
-                    .attr("d", "M0 12 V20 H4 V12z")
+                svg.select("#data-" + data[index])
+                    .attr("d", "M0 4 V20 H4 V4z")
                     .transition()
                     .ease("linear")
-                    .duration(500)
-                    .attr("d", "M0 4 V20 H4 V4z");
+                    .duration(400)
+                    .attr("d", "M0 12 V20 H4 V12z");
+                index++;
+                if( index > data.length-1 ){ index = 0;}
             }
 
             setInterval(function() {
-                var v = data.shift(); // remove the first element of the array
-                data.push(v); // add a new element to the array
+                /*var v = data.shift(); // remove the first element of the array
+                data.push(v);*/ // add a new element to the array
                 redraw();
-            }, 500);
+            }, 200);
         }
     }
 });
