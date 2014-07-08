@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ["d3", "underscore", "json", "graphForces", "svgSpinner"]);
+var app = angular.module("myApp", ["d3", "underscore", "json", "graphForces", "svgLoader"]);
 
 app.controller("MainCtrl", [ "$scope", "JsonFactory", function($scope, JsonFactory){
     $scope.loaded = false;
@@ -10,7 +10,6 @@ app.controller("MainCtrl", [ "$scope", "JsonFactory", function($scope, JsonFacto
     }).error(function(data, status){
         console.log(status);
     });
-
 }]);
 
 
