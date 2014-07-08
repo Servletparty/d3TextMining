@@ -14,48 +14,48 @@ angular.module("graphForces", []).directive("graphForces", function() {
             var color = d3.scale.category20();
 
             // watch grapheDatas and update the graph
-            scope.$watch('grapheDatas', function(graphData){
-                    if(scope.loaded) {
-                        var force = d3.layout.force()
-                            .charge(-120)
-                            .linkDistance(30)
-                            .size([width, height])
-                            .nodes(graphData.nodes)
-                            .links(graphData.links)
-                            .start();
+            scope.$watch('grapheDatas', function(graphData) {
+                if (scope.loaded) {
+                    var force = d3.layout.force()
+                        .charge(-120)
+                        .linkDistance(30)
+                        .size([width, height])
+                        .nodes(graphData.nodes)
+                        .links(graphData.links)
+                        .start();
 
-                        var svg = d3.select("graph-forces").append("svg")
-                            .attr("width", width)
-                            .attr("height", height);
+                    var svg = d3.select("graph-forces").append("svg")
+                        .attr("width", width)
+                        .attr("height", height);
 
-                        var link = svg.selectAll(".link")
-                            .data(graphData.links)
-                            .enter().append("line")
-                            .attr("class", "link")
-                            .style("stroke-width", function (d) {
-                                return Math.sqrt(d.value);
-                            })
-                            .style("stroke", "#dedede");
+                    var link = svg.selectAll(".link")
+                        .data(graphData.links)
+                        .enter().append("line")
+                        .attr("class", "link")
+                        .style("stroke-width", function (d) {
+                            return Math.sqrt(d.value);
+                        })
+                        .style("stroke", "#dedede");
 
-                        var node = svg.selectAll(".node")
-                            .data(graphData.nodes)
-                            .enter().append("circle")
-                            .attr("class", "node")
-                            .attr("r", 5)
-                            .style("fill", function (d) {
-                                return color(d.group);
-                            })
-                            .call(force.drag);
+                    var node = svg.selectAll(".node")
+                        .data(graphData.nodes)
+                        .enter().append("circle")
+                        .attr("class", "node")
+                        .attr("r", 5)
+                        .style("fill", function (d) {
+                            return color(d.group);
+                        })
+                        .call(force.drag);
 
-                        node.append("title")
-                            .text(function (d) {
-                                return d.name;
-                            });
+                    node.append("title")
+                        .text(function (d) {
+                            return d.name;
+                        });
 
-                        force.on("tick", function () {
-                            link.attr("x1", function (d) {
-                                return d.source.x;
-                            })
+                    force.on("tick", function () {
+                        link.attr("x1", function (d) {
+                            return d.source.x;
+                        })
                             .attr("y1", function (d) {
                                 return d.source.y;
                             })
@@ -66,16 +66,15 @@ angular.module("graphForces", []).directive("graphForces", function() {
                                 return d.target.y;
                             });
 
-                            node.attr("cx", function (d) {
-                                return d.x;
-                            })
+                        node.attr("cx", function (d) {
+                            return d.x;
+                        })
                             .attr("cy", function (d) {
                                 return d.y;
                             });
-                        });
-                    }
+                    });
                 }
-            );
+            });
         }
     }
 });
