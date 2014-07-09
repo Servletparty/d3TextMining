@@ -1,6 +1,12 @@
 angular.module("graphForces", []).directive("graphForces", function() {
     return {
-        restrict: 'EA',
+        restrict: "EA",
+        scope: {
+            loaded: "=",
+            data: "="
+        },
+        replace: true,
+        template: '<div class="graph"></div>',
         link: function (scope, element, attrs) {
             var width = 500, height = 500;
 
@@ -11,12 +17,16 @@ angular.module("graphForces", []).directive("graphForces", function() {
                 height = attrs.height;
             }
 
-            var color = d3.scale.category20();
-
             // watch grapheDatas and update the graph
-            scope.$watch('grapheDatas', function(graphData) {
+            scope.$watch("data", function(graphData) {
                 if (scope.loaded) {
-                    var force = d3.layout.force()
+                    drawGraph(graphData);
+                }
+            });
+            
+            function drawGraph(graphData){
+                var color = d3.scale.category20();
+                var force = d3.layout.force()
                         .charge(-120)
                         .linkDistance(30)
                         .size([width, height])
@@ -24,7 +34,7 @@ angular.module("graphForces", []).directive("graphForces", function() {
                         .links(graphData.links)
                         .start();
 
-                    var svg = d3.select("graph-forces").append("svg")
+                    var svg = d3.select(element[0]).append("svg")
                         .attr("width", width)
                         .attr("height", height);
 
@@ -73,8 +83,7 @@ angular.module("graphForces", []).directive("graphForces", function() {
                                 return d.y;
                             });
                     });
-                }
-            });
+            }
         }
     }
 });

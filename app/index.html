@@ -3,6 +3,9 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <!-- CSS -->
+    <link type="text/css" rel="stylesheet" href="css/default.css"/>
+    <link type="text/css" rel="stylesheet" href="css/svgLoader.css"/>
     <!-- frameworks -->
     <script type="text/javascript" src="js/lib/underscore.js"></script>
     <script type="text/javascript" src="js/lib/d3.js"></script>
@@ -14,12 +17,12 @@
     <!-- library factory  -->
     <script type="text/javascript" src="js/libService/d3Factory.js"></script>
     <script type="text/javascript" src="js/libService/underscoreFactory.js"></script>
-    <!-- UI Component directive -->
-    <script type="text/javascript" src="js/UIComponent/grapheForceDirective.js"></script>
-    <script type="text/javascript" src="js/UIComponent/svgLoaderDirective.js"></script>
+    <!-- UI Component directives -->
+    <script type="text/javascript" src="UIComponents/graphforces/script/grapheForceDirective.js"></script>
+    <script type="text/javascript" src="UIComponents/svgloader/script/svgLoaderDirective.js"></script>
 </head>
 <body ng-controller="MainCtrl">
-    <svg-loader width="64" height="64" color="#ebf23c" text="Chargement en cours..."></svg-loader>
-    <!--graph-forces width="1265" height="470"></graph-forces-->
+    <svg-loader width="64" height="64" color="#ebf23c" loaded="data.loaded"></svg-loader>
+    <graph-forces width="1265" height="470" data="data.graphData" loaded="data.loaded"></graph-forces>
 </body>
 </html>
