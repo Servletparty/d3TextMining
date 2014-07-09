@@ -1,16 +1,19 @@
-angular.module("svgLoader", []).directive("svgLoader", function() {
+angular.module("svgLoader", ["utilAttr"])
+        .directive("svgLoader", ["AttrChecker" , function(AttrChecker) {
     return {
         restrict: "EA",
         scope: {
-            loaded: "="
+            loaded: "=",
+            overlap: "="
         },
+        replace: true,
         templateUrl: "UIComponents/svgloader/template/loading-bars.html",
         link: function (scope, element, attrs) {
             scope.$watch("loaded", function(){
                 if(!scope.loaded){
                     drawLoader();
                 }else{
-                    //removeLoader();
+                    removeLoader();
                 }
             });
             
@@ -19,21 +22,27 @@ angular.module("svgLoader", []).directive("svgLoader", function() {
             }
             
             function drawLoader(){
-                var width = 64, height = 64, color = "#ababab", text = "Loading", loaded = false;
+                var size = 64, color = "#ababab", text = "Loading", loaded = false, overlap = true;
 
-                if(attrs.width !== "undefined"){
-                    width = attrs.width;
+                if(attrs.size !== undefined && AttrChecker.isInteger(attrs.size)){
+                    size = attrs.size;
                 }
-                if(attrs.height !== "undefined"){
-                    height = attrs.height;
-                }
-                if(attrs.color !== "undefined"){
+                if(attrs.color !== undefined && AttrChecker.isHexColor(attrs.color)){
                     color = attrs.color;
                 }
+                if(scope.overlap !== undefined && !scope.overlap){
+                    overlap = false;
+                }
                 
-                var svg = d3.select(element[0]).select("svg")
-                    .attr("width", width)
-                    .attr("height", height)
+                var root = d3.select(element[0]);
+                
+                if(!overlap){
+                    root.style("height", "64px");
+                }                
+                
+                var svg = root.select("svg")
+                    .attr("width", size)
+                    .attr("height", size)
                     .attr("fill", color);                
                 
                 var bars = element[0].children[0].childElementCount;
@@ -55,4 +64,4 @@ angular.module("svgLoader", []).directive("svgLoader", function() {
             }
         }
     }
-});
+}]);

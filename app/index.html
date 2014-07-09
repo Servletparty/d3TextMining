@@ -3,26 +3,31 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <!-- CSS -->
+    <!-- App CSS -->
     <link type="text/css" rel="stylesheet" href="css/default.css"/>
-    <link type="text/css" rel="stylesheet" href="css/svgLoader.css"/>
     <!-- frameworks -->
     <script type="text/javascript" src="js/lib/underscore.js"></script>
     <script type="text/javascript" src="js/lib/d3.js"></script>
     <script type="text/javascript" src="js/lib/angular.min.js"></script>
-    <!-- app -->
-    <script type="text/javascript" src="js/app.js"></script>
-    <!-- data access factory -->
-    <script type="text/javascript" src="js/dataFactory/JsonFactory.js"></script>
-    <!-- library factory  -->
+    <!-- Library factory - frameworks  -->
     <script type="text/javascript" src="js/libService/d3Factory.js"></script>
     <script type="text/javascript" src="js/libService/underscoreFactory.js"></script>
-    <!-- UI Component directives -->
-    <script type="text/javascript" src="UIComponents/graphforces/script/grapheForceDirective.js"></script>
-    <script type="text/javascript" src="UIComponents/svgloader/script/svgLoaderDirective.js"></script>
+    <!-- Util Service -->
+    <script type="text/javascript" src="js/utilService/attrChecker.js"></script>
+    <!-- App module -->
+    <script type="text/javascript" src="js/app.js"></script>
+    <!-- Data access factory -->
+    <script type="text/javascript" src="js/dataFactory/JsonFactory.js"></script>
+    <!-- UI Component directives and CSS -->
+    <script type="text/javascript" src="UIComponents/graphforces/directive/grapheForceDirective.js"></script>
+    <script type="text/javascript" src="UIComponents/svgloader/directive/svgLoaderDirective.js"></script>
+    <link type="text/css" rel="stylesheet" href="UIComponents/svgloader/css/loading-bars.css"/>
+    <script type="text/javascript" src="UIComponents/modalpopup/directive/modalPopupDirective.js"></script>
+    <link type="text/css" rel="stylesheet" href="UIComponents/modalpopup/css/modal-popup.css"/>
+    
 </head>
 <body ng-controller="MainCtrl">
-    <svg-loader width="64" height="64" color="#ebf23c" loaded="data.loaded"></svg-loader>
     <graph-forces width="1265" height="470" data="data.graphData" loaded="data.loaded"></graph-forces>
+    <modal-popup content="svg-loader"></modal-popup>
 </body>
 </html>

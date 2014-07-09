@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module("myApp", ["d3", "underscore", "json", "graphForces", "svgLoader"]);
+var app = angular.module("myApp", ["d3", "underscore", "json", "graphForces", "svgLoader", "modalPopup"]);
 
 app.controller("MainCtrl", [ "$scope", "JsonFactory", function($scope, JsonFactory){
     $scope.data = { loaded: false };
