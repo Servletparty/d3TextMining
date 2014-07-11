@@ -1,14 +1,17 @@
 angular.module("svgLoader", ["utilAttr"])
-        .directive("svgLoader", ["AttrChecker" , function(AttrChecker) {
+        .directive("d3SvgLoader", ["AttrChecker" , function(AttrChecker) {
     return {
         restrict: "EA",
         scope: {
-            loaded: "=",
-            overlap: "="
+            loaded: "=sourceLoaded",
+            overlap: "=svgLoaderOverlap"
         },
         replace: true,
         templateUrl: "UIComponents/svgloader/template/loading-bars.html",
         link: function (scope, element, attrs) {
+//            var scripts = document.getElementsByTagName("script")
+//            var currentScriptPath = scripts[scripts.length].src;
+            
             scope.$watch("loaded", function(){
                 if(!scope.loaded){
                     drawLoader();
@@ -24,18 +27,18 @@ angular.module("svgLoader", ["utilAttr"])
             function drawLoader(){
                 var size = 64, color = "#ababab", text = "Loading", loaded = false, overlap = true;
 
-                if(attrs.size !== undefined && AttrChecker.isInteger(attrs.size)){
-                    size = attrs.size;
+                if(attrs.svgLoaderSize !== undefined && AttrChecker.isInteger(attrs.svgLoaderSize)){
+                    size = attrs.svgLoaderSize;
                 }
-                if(attrs.color !== undefined && AttrChecker.isHexColor(attrs.color)){
-                    color = attrs.color;
+                if(attrs.svgLoaderColor !== undefined && AttrChecker.isHexColor(attrs.svgLoaderColor)){
+                    color = attrs.svgLoaderColor;
                 }
                 if(scope.overlap !== undefined && !scope.overlap){
                     overlap = false;
                 }
                 
                 var root = d3.select(element[0]);
-                
+                console.log(scope.overlap + " - " + overlap);
                 if(!overlap){
                     root.style("height", "64px");
                 }                

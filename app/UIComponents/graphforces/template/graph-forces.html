@@ -1,1 +1,15 @@
-<div id="graph-forces"><svg xmlns="http://www.w3.org/2000/svg"></svg></div>
+<div id="graph-forces"  style="width:1265px; margin: 0 auto;">
+    <div class="graph-forces-filter-occurence" ng-show="filterable">
+        <label for="hit">Occurence minimale (%): </label>
+        <input type="text" id="hit" value="1" size="5"/>
+        <button id="set" type="button" onclick="updateNodes(data);">Configurer</button>
+    </div>
+    <div class="graph-forces-info" ng-show="displayInfo">
+        <span id="figures">Nombre de noeuds: {{data.nodes.length}} - Nombre de liens: {{data.links.length}}</span>
+    </div>
+    <div class="clear"></div>
+    <svg class="graph-forces-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div id="graph-forces-filter-nodes" ng-show="displayNodesCheckBox">
+        <input ng-repeat-start="node in data.nodes" type="checkbox" checked="checked"/><label ng-repeat-end>{{node.name}}</label>
+    </div>
+</div>

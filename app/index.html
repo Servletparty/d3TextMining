@@ -20,6 +20,7 @@
     <script type="text/javascript" src="js/dataFactory/JsonFactory.js"></script>
     <!-- UI Component directives and CSS -->
     <script type="text/javascript" src="UIComponents/graphforces/directive/grapheForceDirective.js"></script>
+    <link type="text/css" rel="stylesheet" href="UIComponents/graphforces/css/graph-forces.css"/>
     <script type="text/javascript" src="UIComponents/svgloader/directive/svgLoaderDirective.js"></script>
     <link type="text/css" rel="stylesheet" href="UIComponents/svgloader/css/loading-bars.css"/>
     <script type="text/javascript" src="UIComponents/modalpopup/directive/modalPopupDirective.js"></script>
@@ -27,7 +28,12 @@
     
 </head>
 <body ng-controller="MainCtrl">
-    <graph-forces width="1265" height="470" data="data.graphData" loaded="data.loaded"></graph-forces>
-    <modal-popup content="svg-loader"></modal-popup>
+    <div id="content">
+        <div id="header">
+            <img title="MAN Diesel & Turbo" alt="MAN Diesel & Turbo" src="ressources/img/header.png" width="1265" height="94"/>
+        </div>
+        <d3-svg-loader source-loaded="data.loaded" svg-loader-overlap="true"></d3-svg-loader>
+        <d3-graph-forces graph-forces-width="1265" graph-forces-height="450" graph-forces-data="data.graphData" source-loaded="data.loaded" filterable="true" display-info="false"></d3-graph-forces>
+    </div>
 </body>
 </html>

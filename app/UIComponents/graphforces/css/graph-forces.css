@@ -1,0 +1,17 @@
+.clear {
+    clear: both;
+}
+
+#graph-forces {
+    width: 1265px;
+    //margin: 0 auto;
+}
+
+.graph-forces-filter-occurence {
+    margin: 0 auto;
+    float: left;
+}
+
+.graph-forces-svg {
+    margin-top: 10px;
+}

@@ -1,9 +1,10 @@
 angular.module("modalPopup", ["utilAttr"])
         .directive("modalPopup", ["$compile", "AttrChecker" , function($compile, AttrChecker) {
+                
     return {
         restrict: "EA",
         scope: {
-            content: "@"
+            item: "@"
         },
         replace: true,
         templateUrl: "UIComponents/modalpopup/template/modal-popup.html",
@@ -34,5 +35,5 @@ angular.module("modalPopup", ["utilAttr"])
                 document.getElementById('fade').style.display = 'none';
             }
         }
-    }
+    };
 }]);

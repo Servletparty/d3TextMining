@@ -5,7 +5,7 @@ var app = angular.module("myApp", ["d3", "underscore", "json", "graphForces", "s
 app.controller("MainCtrl", [ "$scope", "JsonFactory", function($scope, JsonFactory){
     $scope.data = { loaded: false };
 
-    JsonFactory.getData("data/data.json").success(function(data, status){
+    JsonFactory.getData("data/outlook-citrix.json").success(function(data, status){
         $scope.data.graphData = data;
         $scope.data.loaded = true;
         console.log(status);

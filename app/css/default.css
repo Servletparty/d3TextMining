@@ -4,3 +4,8 @@ body, html {
     height: 100%;
     text-align: center;
 }
+
+#header {
+    width: 1265px;
+    margin: 0 auto;
+}
